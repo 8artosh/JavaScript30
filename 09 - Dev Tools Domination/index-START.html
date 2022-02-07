@@ -1,46 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Console Tricks!</title>
+	</head>
+	<body>
+		<p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+		<script>
+			const dogs = [
+				{ name: 'Snickers', age: 2 },
+				{ name: 'hugo', age: 8 },
+			];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+			function makeGreen() {
+				const p = document.querySelector('p');
+				p.style.color = '#BADA55';
+				p.style.fontSize = '50px';
+			}
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+			// Regular
+			console.log('hello');
 
-    // Regular
+			// Interpolated
+			//console.log('Hi there %s!', dogs[0].name);
+			console.log(`Hi there ${dogs[0].name}!`);
 
-    // Interpolated
+			// Styled
+			console.log('%c Styled', 'color:orange;font-size:28px;');
 
-    // Styled
+			// warning!
+			console.warn('Be carefull!');
 
-    // warning!
+			// Error :|
+			console.error('DANGER!');
 
-    // Error :|
+			// Info
+			console.info('Task complete');
 
-    // Info
+			// Testing
+			console.assert(1 == 2, '1 is not equal to 2');
 
-    // Testing
+			// clearing
+			//console.clear();
 
-    // clearing
+			// Viewing DOM Elements
+			const p = document.querySelector('p');
+			console.log(p);
+			//console.dir(p);
+			console.dirxml(p);
 
-    // Viewing DOM Elements
+			// Grouping together
+			dogs.forEach(dog => {
+				console.groupCollapsed(dog.name);
+				console.log(`${dog.name} runs!`);
+				console.log(`${dog.name} eats!`);
+				console.log(`${dog.name} sleep!`);
+				console.groupEnd(dog.name);
+			});
 
-    // Grouping together
+			// counting
+			console.count('fetch data');
+			console.count('print data');
+			console.count('fetch data');
+			console.count('print data');
+			console.count('print data');
+			console.count('print data');
+			console.count('fetch data');
+			console.count('fetch data');
 
-    // counting
+			// timing
+			console.time('Fetching data');
+			fetch('https://api.github.com/users/8artosh')
+				.then(data => data.json())
+				.then(data => {
+					console.timeEnd('Fetching data');
+					console.log(data);
+				});
 
-    // timing
-
-  </script>
-</body>
+			// table
+			console.table(dogs);
+		</script>
+	</body>
 </html>
